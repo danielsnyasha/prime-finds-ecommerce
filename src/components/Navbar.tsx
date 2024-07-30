@@ -7,7 +7,7 @@ const Navbar = () => {
         <MaxWidthWrapper>
             <div className="flex h-14 items-center justify-between border-b border-zinc-200">
                 <Link href='/' className="flex z-40 font-semibold">
-                case<span className="text-green-600">Prime Finds</span>
+                Prime<span className="text-green-600">Finds</span>
                 </Link>
             </div>
         </MaxWidthWrapper>
