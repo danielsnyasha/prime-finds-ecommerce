@@ -7,7 +7,6 @@ import Link from 'next/link'
 import { Icons } from "@/components/Icons";
 import { Reviews } from "@/components/Reviews";
 import { buttonVariants } from "@/components/ui/button";
-
 export default function Home() {
   return (
     <div className="bg-slate-50">
@@ -66,7 +65,7 @@ export default function Home() {
 
             <div className="relative md:max-w-xl">
               <img src='/your-image.png' className="absolute w-40 lg:w-52 left-56 -top-20 select-none hidden sm:block lg:hidden xl:block" alt="image here"/>
-              <img src='/line.png' className="absolute w-20 -left-6 -bottom-6 select-none"/>
+              <img src='/line.png' className="absolute w-20 -left-6 -bottom-6 select-none" alt='logo'/>
               <Phone className="w-64" imgSrc={"/testimonials/1.jpg"}/>
             </div>
 
