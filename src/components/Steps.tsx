@@ -54,7 +54,7 @@ const Steps = () => {
                 )}>
                 <span className='flex-shrink-0'>
                   <img
-                    src={imgPath}
+                    src={imgPath} alt='alt'
                     className={cn(
                       'flex h-20 w-20 object-contain items-center justify-center',
                       {
