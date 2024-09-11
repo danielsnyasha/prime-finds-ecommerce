@@ -22,9 +22,9 @@ export const createCheckoutSession = async ({
   const { getUser } = getKindeServerSession()
   const user = await getUser()
 
-  if (!user) {
-    throw new Error('You need to be logged in')
-  }
+  // Check if the user exists, if not, provide a guest fallback
+  const userId = user?.id ?? 'guest'
+  const userEmail = user?.email ?? 'guest@example.com'
 
   const { finish, material } = configuration
 
@@ -37,12 +37,10 @@ export const createCheckoutSession = async ({
 
   const existingOrder = await db.order.findFirst({
     where: {
-      userId: user.id,
+      userId,  // User ID or guest fallback
       configurationId: configuration.id,
     },
   })
-
-  console.log(user.id, configuration.id)
 
   if (existingOrder) {
     order = existingOrder
@@ -50,7 +48,7 @@ export const createCheckoutSession = async ({
     order = await db.order.create({
       data: {
         amount: price / 100,
-        userId: user.id,
+        userId,  // User ID or guest fallback
         configurationId: configuration.id,
       },
     })
@@ -72,7 +70,7 @@ export const createCheckoutSession = async ({
     mode: 'payment',
     shipping_address_collection: { allowed_countries: ['DE', 'US'] },
     metadata: {
-      userId: user.id,
+      userId,  // User ID or guest fallback
       orderId: order.id,
     },
     line_items: [{ price: product.default_price as string, quantity: 1 }],
